@@ -7,6 +7,7 @@ from icse.ps.wm.WorkingMemory import WorkingMemory
 from icse.ps.wm.WorkingMemory import FactNotFoundError
 from icse.ps.Fact import Fact
 from icse.ps.Template import Template
+from copy import copy
 
 class DictWMImpl(WorkingMemory):
     '''
@@ -33,8 +34,8 @@ class DictWMImpl(WorkingMemory):
         templateId = fact.get_template()
         template = self.__templates[templateId]
         
-        if template.is_valid(fact) : 
-            self.__facts[fact.get_template()] = fact
+        if template.validate(fact, False) : 
+            self.__facts[fact.get_template()][fact.get_id()] = fact
         else:
             raise TypeError("fact non e' valido per il template")
 
@@ -49,7 +50,9 @@ class DictWMImpl(WorkingMemory):
         if not self.__facts.has_key(template) or not self.__facts[template].has_key(fact):
             raise FactNotFoundError("Il fatto non e' stato asserito")
         
-        return self.__facts[template].pop(fact)
+        fact = copy(self.__facts[template][fact])
+        del self.__facts[template][fact]
+        return fact
     
     def def_template(self, template):
         '''
@@ -59,7 +62,7 @@ class DictWMImpl(WorkingMemory):
             tempKey = template
             template = Template(template)
         else:
-            tempKey = template.get_id()
+            tempKey = template.get_templateid()
             
         if self.__facts.has_key(tempKey):
             raise TypeError("Doppia definizione di template con lo stesso id")
@@ -80,6 +83,6 @@ class DictWMImpl(WorkingMemory):
         if template != None and self.__facts.has_key(template) :
             return {template : self.__facts[template]}
     
-        self.__facts
+        return self.__facts
     
     

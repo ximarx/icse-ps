@@ -6,6 +6,9 @@ Created on 24/mar/2012
 from icse.ps.wm.WorkingMemory import WorkingMemory
 from icse.ps.Template import Template
 from icse.ps.Fact import Fact
+from icse.ps.constraints.Range import Range
+from icse.ps.constraints.OrChain import OrChain
+from icse.ps.constraints.NullValue import NullValue
 
 class Naive:
     '''
@@ -28,10 +31,13 @@ class Naive:
         if not isinstance(wmemory, WorkingMemory) :
             raise TypeError("wmemory non e' una WorkingMemory")
         
-        t = Template('numero')
-        t.append_attribute(Template.Attribute('valore', True, Template.Attribute.TYPE_INT))
+        tplCella = Template('Cella', {
+                'x' : Range(1, 3),
+                'y' : Range(1, 3),
+                'valore' : OrChain([Range(1,9), NullValue()])
+            })
         
-        wmemory.def_template(t)
+        wmemory.def_template(tplCella)
         
     def load_facts(self, wmemory):
         '''
@@ -39,5 +45,13 @@ class Naive:
         nella working memory
         @param wmemory: WorkingMemory
         '''
-        wmemory.assert_fact(Fact('1', {'valore': 1}, 'numero'))
+        for i in range(0,9):
+            if i < 4: label = i + 1 
+            elif i > 4 : label = i
+            else: label = None
+            wmemory.assert_fact(Fact(str(i+1), {
+                    'x': (i / 3) + 1,
+                    'y': (i % 3) + 1,
+                    'valore': label
+                }, 'Cella'))
         

@@ -40,6 +40,32 @@ class Fact:
             if not callable(attr) and name[0:1] != "_" :
                 attributes[name] = attr
         return attributes
+    
+    def __getitem__(self, key):
+        '''
+        permette di utilizzare fact[attr]
+        '''
+        if key[0:1] == '_':
+            raise TypeError("Chiave non valida")
+        return getattr(self, key)
+
+    def __setitem__(self, key, value):
+        '''
+        permette di avvalorare fact[attr]
+        '''
+        if key == 'id' or key == 'template' or key[0:1] == '_':
+            raise TypeError("Chiave non valida")
+        return setattr(self, key, value)
+
+    def __delitem__(self, key):
+        '''
+        permette di cancellare fact[attr]
+        '''
+        if key == 'id' or key == 'template' or key[0:1] == '_':
+            raise TypeError("Chiave non valida")
+        return delattr(self, key)
+
+
                  
     def __str__(self):
         return json.dumps({'id': self.get_id(), 'template': self.get_template(), 'attributes': self.get_attributes()}, indent=4)
