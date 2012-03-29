@@ -11,6 +11,7 @@ from icse.ps.constraints.RegexMatch import RegexMatch
 from icse.ps.constraints.NullValue import NullValue
 from icse.ps.wm.DictWMImpl import DictWMImpl
 from icse.ps.wm.loader.Naive import Naive
+import json
 
 
 if __name__ == '__main__':
@@ -56,3 +57,7 @@ if __name__ == '__main__':
             print "Fatto: "+vv.get_id()
             print vv
         
+        
+    
+    
+    
