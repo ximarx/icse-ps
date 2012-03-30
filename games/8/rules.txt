@@ -1,9 +1,11 @@
 
 defrule sposta-vuoto-su:
-    esiste( $X, 'Cella')
-    esiste( $Y, 'Cella')
-    uguale( attributo($X, 'valore'), NULL )
-    uguale( attributo($Y, 'y'), sottrazione( attributo($X, 'y'), 1) )
+    esiste( $X, 'Cella', 
+    	uguale( attributo($X, 'valore'), NULL )
+    ) 
+    esiste( $Y, 'Cella', 
+    	uguale( attributo($Y, 'y'), sottrazione( attributo($X, 'y'), 1) ) 
+    )
     uguale( attributo($X, 'x'), attributo($Y, 'x') )
 ==>
     cambiaFatto($X, 'y', sottrazione( attributo($X, 'y'), 1))

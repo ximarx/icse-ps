@@ -1,5 +1,5 @@
-from pyparsing import Word, alphanums, alphas, OneOrMore, Or, Combine, Forward, nums,\
-    Suppress, ZeroOrMore, Group, CharsNotIn, Optional, oneOf
+from pyparsing import Word, alphanums, alphas, OneOrMore, Forward, nums,\
+    Suppress, ZeroOrMore, Group, CharsNotIn, oneOf
 import os
 
 DEFRULE_START = "defrule"
@@ -11,7 +11,8 @@ variabile = Word('$', alphanums+"_-")
 stringa = Suppress("'") + CharsNotIn("'") + Suppress("'") ^ \
             Suppress('"') + CharsNotIn('"') + Suppress('"')
 funzione = Forward()
-operando = (variabile | stringa | funzione | "NULL" | Word(nums) ) 
+booleano = oneOf("True False")
+operando = (variabile | stringa | funzione | "NULL" | Word(nums) | booleano ) 
 operatore = Word(alphas, alphanums+"_")
 funzione << Group( operatore +  LPAR + Group( operando + ZeroOrMore( ( Suppress(",") + operando) ) ) + RPAR ) 
 
