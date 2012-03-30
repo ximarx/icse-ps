@@ -80,9 +80,16 @@ class DictWMImpl(WorkingMemory):
         '''
         @see: WorkingMemory.get_facts
         '''
-        if template != None and self.__facts.has_key(template) :
-            return {template : self.__facts[template]}
+        if template != None:
+            if self.__facts.has_key(template) :
+                return self.__facts[template]
+            else:
+                return []
     
-        return self.__facts
+        lfacts = []
+        for facts in self.__facts.items():
+            lfacts.extend(facts)
+            
+        return lfacts
     
     
