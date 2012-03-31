@@ -28,3 +28,5 @@ class Or(Chain):
             
         return False
     
+    def __str__(self):
+        return "( " + " oppure ".join([str(x) for x in self._subcondizioni]) + " )"

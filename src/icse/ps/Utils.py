@@ -19,6 +19,7 @@ def new_object_from_classname(classname, constrParams = [], modulename = None):
     if modulename != None:
         imported = __import__(modulename,  globals(), locals(), [classname], -1)
         attr = getattr(imported, classname)
+        #print "creo: "+classname+" con ",constrParams
         return attr(*constrParams)
     else:
         return globals()[classname](*constrParams)

@@ -10,21 +10,20 @@ class Regola:
     '''
 
 
-    def __init__(self):
+    def __init__(self, nome, condizioni, azioni, simboli = {}):
         '''
         Constructor
         '''
-        self._condizioni = []
-        self._azioni = []
-        self._simboli = {}
+        self._nome = nome
+        self._condizioni = condizioni
+        self._azioni = azioni
+        self._simboli = simboli
         
     def is_valida(self, wm):
         '''
         controlla se la regola e' applicabile
         nello stato attuale della wm
         '''
-        
-        self._simboli = {}
         
         for condizione in self._condizioni:
             if not condizione.is_valida(wm, self._simboli):
@@ -41,3 +40,7 @@ class Regola:
         for azione in self._azioni:
             azione.esegui(wm, self._simboli, agenda)
         
+    def __str__(self):
+        return "Regola: "+self._nome+"\n"\
+            "\tSe si verifica che:\n\t\t" + "\n\t\t".join([str(x) for x in self._condizioni])+"\n"+\
+            "\tAllora:\n\t\t" + "\n\t\t".join([str(x) for x in self._azioni])

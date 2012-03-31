@@ -22,6 +22,9 @@ class Funzione(Operando):
     def valuta(self, simboli={}):
         op_valutati = [x.valuta(simboli) for x in self._parametri]
         return Proxy.call(self._nome, op_valutati)
+    
+    def __str__(self):
+        return self._nome + "(" + ", ".join([str(x) for x in self._parametri]) + ")"
         
         
     

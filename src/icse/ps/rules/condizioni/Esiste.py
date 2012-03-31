@@ -26,7 +26,7 @@ class Esiste(Condizione):
         
     def is_valida(self, wm, simboli={}):
         wm = DictWMImpl()
-        facts = wm.get_facts(self._template)
+        facts = wm.get_facts(self._template.valuta(simboli))
         if self._subcondizione != None:
             '''
             faccio una copia dei simboli attuali, in modo
@@ -37,7 +37,7 @@ class Esiste(Condizione):
             for fact in facts:
                 in_simboli = copy(simboli)
                 # aggiungo il simbolo al dizionario temporaneo
-                in_simboli[self._simbolo] = fact
+                in_simboli[self._simbolo.valuta(simboli)] = fact
                 # valuto l'espressione
                 if self._subcondizione.is_valida(wm, in_simboli):
                     # condizione verificata per SIMBOLO = fact
@@ -70,9 +70,9 @@ class Esiste(Condizione):
         '''
         stringa = [
                 'esiste un',
-                self._simbolo,
+                str(self._simbolo),
                 'di tipo',
-                self._template
+                str(self._template)
             ]
         if self._subcondizione:
             stringa.append('tale che')
