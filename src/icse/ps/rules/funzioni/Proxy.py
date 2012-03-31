@@ -96,26 +96,5 @@ class FirmaNonRispettataError(ProxyError):
     di parametri richiesto della funzione
     non e' rispettato
     '''
-    
-class TipoParametroNonValido(ProxyError):
-    '''
-    Lanciata dall'handler di funzione
-    per indicare un tipo di parametro
-    non valido
-    '''
-        
 
-class Prova(Funzione):
-    @staticmethod
-    def sign():
-        return {
-                'sign': '+',
-                'minParams': 2,
-                'handler': Prova.handler
-            }
-    @staticmethod
-    def handler(arg1, arg2):
-        print arg1, arg2
-        
-        
         
