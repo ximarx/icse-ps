@@ -12,6 +12,9 @@ from icse.ps.constraints.NullValue import NullValue
 from icse.ps.wm.DictWMImpl import DictWMImpl
 from icse.ps.wm.loader.Naive import Naive
 import json
+from icse.ps.rules.Parser import Parser
+from icse.ps.rules.grammatiche.ClipsLike import ClipsLike
+import os
 
 
 if __name__ == '__main__':
@@ -49,15 +52,16 @@ if __name__ == '__main__':
         
     loader.load_facts(wmemory);
 
-    for (k,v) in wmemory.get_facts().items() :
-        print "####################"
-        print "| Template: "+k
-        for (kk,vv) in v.items():
-            print "------------------------"
-            print "Fatto: "+vv.get_id()
-            print vv
+    for v in wmemory.get_facts() :
+        print "------------------------"
+        print "Fatto: "+v.get_id()
+        print v
         
         
+    parser = Parser(ClipsLike())
+    rules = parser.parse(os.getcwd()+'/../games/8/rules.txt')
+    
+    print "\n\n".join([str(x) for x in rules])
     
     
     

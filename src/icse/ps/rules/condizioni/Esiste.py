@@ -4,7 +4,6 @@ Created on 30/mar/2012
 @author: ximarx
 '''
 from icse.ps.rules.condizioni.Condizione import Condizione
-from icse.ps.wm.DictWMImpl import DictWMImpl
 from copy import copy
 
 class Esiste(Condizione):
@@ -25,7 +24,6 @@ class Esiste(Condizione):
         self._subcondizione = subcondizione  
         
     def is_valida(self, wm, simboli={}):
-        wm = DictWMImpl()
         facts = wm.get_facts(self._template.valuta(simboli))
         if self._subcondizione != None:
             '''

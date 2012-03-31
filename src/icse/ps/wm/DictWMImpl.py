@@ -87,8 +87,8 @@ class DictWMImpl(WorkingMemory):
                 return []
     
         lfacts = []
-        for facts in self.__facts.items():
-            lfacts.extend(facts)
+        for facts in self.__facts.values():
+            lfacts.extend(facts.values())
             
         return lfacts
     
