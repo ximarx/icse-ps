@@ -5,6 +5,7 @@ Created on 30/mar/2012
 '''
 from icse.ps.rules.condizioni.Condizione import Condizione
 from copy import copy
+from icse.ps.rules.operandi.Simbolo import Simbolo
 
 class Esiste(Condizione):
     '''
@@ -17,6 +18,7 @@ class Esiste(Condizione):
         '''
         Constructor
         '''
+        assert isinstance(simbolo, Simbolo)
         self._simbolo = simbolo
         self._template = template
         if not isinstance(subcondizione, Condizione):
@@ -32,10 +34,10 @@ class Esiste(Condizione):
             visto che ho bisogno di inserire 
             il nuovo simbolo subito per valutare il resto dell'espressione
             '''
-            for fact in facts:
+            for fact in facts.values():
                 in_simboli = copy(simboli)
                 # aggiungo il simbolo al dizionario temporaneo
-                in_simboli[self._simbolo.valuta(simboli)] = fact
+                in_simboli[str(self._simbolo)] = fact
                 # valuto l'espressione
                 if self._subcondizione.is_valida(wm, in_simboli):
                     # condizione verificata per SIMBOLO = fact

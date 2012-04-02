@@ -31,7 +31,7 @@ class Attributo(Funzione):
         @raise TypeError: se l'attributo non e' nel fatto 
         '''
         
-        assert isinstance(op1, Fact), "Atteso tipo Fact come primo parametro, ottenuto: "+type(op1)
+        assert isinstance(op1, Fact), "Atteso tipo Fact come primo parametro, ottenuto: "+str(type(op1))
         op2 = str(op2)
         
         return op1[op2]

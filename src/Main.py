@@ -15,6 +15,7 @@ import json
 from icse.ps.rules.Parser import Parser
 from icse.ps.rules.grammatiche.ClipsLike import ClipsLike
 import os
+from icse.ps.Agenda import Agenda
 
 
 if __name__ == '__main__':
@@ -62,6 +63,16 @@ if __name__ == '__main__':
     rules = parser.parse(os.getcwd()+'/../games/8/rules.txt')
     
     print "\n\n".join([str(x) for x in rules])
+    
+    
+    agenda = Agenda(rules)
+    
+    print 
+    print "Alla situazione corrente posso applicare:"
+    for r in agenda.find_regole(wmemory):
+        print "\t"+r.get_nome()
+    
+    
     
     
     

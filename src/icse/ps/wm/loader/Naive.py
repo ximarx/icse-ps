@@ -46,8 +46,7 @@ class Naive:
         @param wmemory: WorkingMemory
         '''
         for i in range(0,9):
-            if i < 4: label = i + 1 
-            elif i > 4 : label = i
+            if i > 0: label = i + 1 
             else: label = None
             wmemory.assert_fact(Fact(str(i+1), {
                     'x': (i / 3) + 1,

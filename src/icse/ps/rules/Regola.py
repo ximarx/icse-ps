@@ -19,6 +19,18 @@ class Regola:
         self._azioni = azioni
         self._simboli = simboli
         
+    def get_nome(self):
+        return self._nome
+    
+    def get_condizioni(self):
+        return self._condizioni
+    
+    def get_azioni(self):
+        return self._azioni
+    
+    def get_builtins(self):
+        return self._simboli
+        
     def is_valida(self, wm):
         '''
         controlla se la regola e' applicabile
