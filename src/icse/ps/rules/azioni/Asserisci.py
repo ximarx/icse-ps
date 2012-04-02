@@ -37,17 +37,17 @@ class Asserisci(Azione):
         '''risolvo idfatto'''
         vidfatto = self._idfatto
         if isinstance(vidfatto, Operando):
-            vidfatto = vidfatto.valuta(self, simboli)
+            vidfatto = vidfatto.valuta(simboli)
             
         '''risolvo template'''
         vtemplate = self._template
         if isinstance(vtemplate, Operando):
-            vtemplate = vtemplate.valuta(self, simboli)
+            vtemplate = vtemplate.valuta(simboli)
             
         '''risolvo attributi'''
         vattributi = self._attributi
         if isinstance(vattributi, Operando):
-            vattributi = vattributi.valuta(self, simboli)
+            vattributi = vattributi.valuta(simboli)
             
         '''tutto e' pronto per l'esecuzione'''
         assert isinstance(vattributi, dict), \

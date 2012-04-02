@@ -11,10 +11,14 @@ class Chain(Condizione):
     '''
 
 
-    def __init__(self, subcondizioni = []):
+    def __init__(self, subcondizioni = None):
         '''
         Constructor
         '''
+        
+        if subcondizioni == None:
+            subcondizioni = []
+        
         # filtra le subcondizioni accettando solo
         # condizioni
         self._subcondizioni = [x for x in subcondizioni if isinstance(x, Condizione)]

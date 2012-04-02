@@ -12,14 +12,18 @@ class Funzione(Operando):
     '''
 
 
-    def __init__(self, nome, parametri = []):
+    def __init__(self, nome, parametri = None):
         '''
         Constructor
         '''
+        if parametri == None:
+            parametri = []
         self._nome = nome
         self._parametri = [x for x in parametri if isinstance(x, Operando)]
         
-    def valuta(self, simboli={}):
+    def valuta(self, simboli=None):
+        if simboli == None:
+            simboli = {}
         op_valutati = [x.valuta(simboli) for x in self._parametri]
         return Proxy.call(self._nome, op_valutati)
     

@@ -11,10 +11,13 @@ class XorChain(Chain):
     sugli attributi
     '''
 
-    def __init__(self, constraints = []):
+    def __init__(self, constraints = None):
         '''
         Constructor
         '''
+        
+        if constraints == None:
+            constraints = []
         Chain.__init__(self, constraints) 
     
     def is_valid(self, value):

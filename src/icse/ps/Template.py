@@ -18,10 +18,12 @@ class Template :
     '''
 
 
-    def __init__(self, templateId, constraints = {}):
+    def __init__(self, templateId, constraints = None):
         '''
         Constructor
         '''
+        if constraints == None:
+            constraints = {}
         self._templateId = templateId
         self._constraints = constraints
         
@@ -122,7 +124,6 @@ class Template :
            
            
 class InvalidFactAttributeError(Exception):
-    def __init__(self, *args, **kwargs):
-        Exception.__init__(self, *args, **kwargs)        
+    pass
         
         

@@ -12,10 +12,12 @@ class Agenda:
     '''
 
 
-    def __init__(self, regole = []):
+    def __init__(self, regole = None):
         '''
         Constructor
         '''
+        if regole == None:
+            regole = []
         self._regole = dict([(x.get_nome(),x) for x in regole if isinstance(x, Regola)])
         self._penality = {}
         

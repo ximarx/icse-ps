@@ -25,7 +25,9 @@ def constraints():
 def chains():
     return _chains.keys()
 
-def factory(nome, args = []):
+def factory(nome, args = None):
+    if args == None:
+            args = []
 
     merged = copy(_chains)
     merged.update(_constraints)

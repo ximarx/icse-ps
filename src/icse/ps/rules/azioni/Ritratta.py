@@ -31,7 +31,7 @@ class Ritratta(Azione):
         '''risolvo fatto'''
         vfatto = self._fatto
         if isinstance(vfatto, Operando):
-            vfatto = vfatto.valuta(self, simboli)
+            vfatto = vfatto.valuta(simboli)
             
         '''tutto e' pronto per l'esecuzione'''
         assert isinstance(vfatto, Fact), \

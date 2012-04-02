@@ -1,7 +1,7 @@
 '''
 Created on 30/mar/2012
 
-@author: ximarx
+@author: Francesco Capozzo
 '''
 from icse.ps.rules.condizioni.Condizione import Condizione
 
@@ -24,7 +24,9 @@ class Not(Condizione):
         self._subcondizione = subcondizione
         
         
-    def is_valida(self, wm, simboli={}):
+    def is_valida(self, wm, simboli=None):
+        if simboli == None:
+            simboli = {}
         return not self._subcondizione.is_valida(wm, simboli)
     
     def __str__(self):

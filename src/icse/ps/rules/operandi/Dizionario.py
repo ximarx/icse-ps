@@ -17,7 +17,9 @@ class Dizionario(Operando):
         '''
         self._valori = dict(valori)
         
-    def valuta(self, simboli={}):
+    def valuta(self, simboli=None):
+        if simboli == None:
+            simboli = {}
         return dict([(key, val.valuta(simboli)) for (key,val) in self._valori.items()])
     
     def __str__(self):

@@ -15,7 +15,9 @@ class Condizione():
         Inizializza la condizione
         '''
         
-    def is_valida(self, wm, simboli = {}):
+    def is_valida(self, wm, simboli = None):
+        if simboli == None:
+            simboli = {}
         return True
     
     def __str__(self):

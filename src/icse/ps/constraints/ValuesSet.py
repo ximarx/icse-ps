@@ -11,10 +11,13 @@ class ValuesSet(Constraint):
     di valori prefissati
     '''
 
-    def __init__(self, values = []):
+    def __init__(self, values = None):
         '''
         Constructor
         '''
+        if values == None:
+            values = []
+        
         self._values = values
         
     def to_json(self):

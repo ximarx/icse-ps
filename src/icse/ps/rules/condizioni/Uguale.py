@@ -18,7 +18,9 @@ class Uguale(Condizione):
         self._op1 = operando1
         self._op2 = operando2
         
-    def is_valida(self, wm, simboli={}):
+    def is_valida(self, wm, simboli=None):
+        if simboli == None:
+            simboli = {}
         if isinstance(self._op1, Operando):
             vop1 = self._op1.valuta(simboli)
         if isinstance(self._op1, Operando):

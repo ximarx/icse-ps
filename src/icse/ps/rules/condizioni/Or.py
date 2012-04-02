@@ -10,18 +10,23 @@ class Or(Chain):
     Condizione Or di condizioni
     '''
 
-    def __init__(self, subcondizioni = []):
+    def __init__(self, subcondizioni = None):
         '''
         Inizializza la chain
         '''
+        if subcondizioni == None:
+            subcondizioni = []
         Chain.__init__(self, subcondizioni)
         
-    def is_valida(self, wm, simboli={}):
+    def is_valida(self, wm, simboli=None):
         '''
         Controlla tutte le subcondizioni
         e termina il controllo alla prima
         subcondizione verificata
         '''
+        if simboli == None:
+            simboli = {}
+            
         for condizione in self._subcondizioni:
             if condizione.is_valida(wm, simboli):
                 return True

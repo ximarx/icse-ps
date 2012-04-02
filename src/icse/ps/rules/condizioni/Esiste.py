@@ -25,7 +25,9 @@ class Esiste(Condizione):
             subcondizione = None
         self._subcondizione = subcondizione  
         
-    def is_valida(self, wm, simboli={}):
+    def is_valida(self, wm, simboli=None):
+        if simboli == None:
+            simboli = {}
         facts = wm.get_facts(self._template.valuta(simboli))
         if self._subcondizione != None:
             '''

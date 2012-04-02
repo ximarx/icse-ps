@@ -17,7 +17,9 @@ class Simbolo(Operando):
         '''
         self._identificatore = "$"+identificatore[1:]
         
-    def valuta(self, simboli={}):
+    def valuta(self, simboli=None):
+        if simboli == None:
+            simboli = {}
         if simboli.has_key(self._identificatore):
             return simboli[self._identificatore]
         else:
@@ -27,5 +29,4 @@ class Simbolo(Operando):
         return self._identificatore
         
 class SimboloSconosciutoError(Exception):
-    def __init__(self, *args, **kwargs):
-        Exception.__init__(self, *args, **kwargs)
+    pass

@@ -10,13 +10,15 @@ class Regola:
     '''
 
 
-    def __init__(self, nome, condizioni, azioni, simboli = {}):
+    def __init__(self, nome, condizioni, azioni, simboli = None):
         '''
         Constructor
         '''
         self._nome = nome
         self._condizioni = condizioni
         self._azioni = azioni
+        if simboli == None:
+            simboli = {}
         self._simboli = simboli
         
     def get_nome(self):

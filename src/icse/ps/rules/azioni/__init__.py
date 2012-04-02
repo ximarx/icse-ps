@@ -13,7 +13,9 @@ _azioni = {
 def azioni():
     return  _azioni.keys()
 
-def factory(nome, args = []):
+def factory(nome, args = None):
+    if args == None:
+        args = []
     if not _azioni.has_key(nome):
         raise AzioneNonValidaError("Azione sconosciuta: "+str(nome))
     

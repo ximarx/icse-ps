@@ -11,10 +11,12 @@ class Chain(Constraint):
     sugli attributi
     '''
 
-    def __init__(self, constraints = []):
+    def __init__(self, constraints = None):
         '''
         Constructor
         '''
+        if constraints == None:
+            constraints = []
         self._constraints = [constraint for constraint in constraints if isinstance(constraint, Constraint)]
             
         

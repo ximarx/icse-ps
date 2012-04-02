@@ -34,23 +34,23 @@ class DisabilitaRegolaPer(Azione):
         '''risolvo regola'''
         vregola = self._regola
         if isinstance(vregola, Operando):
-            vregola = vregola.valuta(self, simboli)
+            vregola = vregola.valuta(simboli)
 
         '''risolvo turni'''
         vturni = self._turni
         if isinstance(vturni, Operando):
-            vturni = vturni.valuta(self, simboli)
+            vturni = vturni.valuta(simboli)
             
         assert isinstance(vregola, "".__class__), \
             "Atteso regola di tipo string dopo la valutazione, ottenuto: "+str(type(vregola))
 
-        assert isinstance(vturni, "".__class__), \
+        assert isinstance(vturni, int), \
             "Atteso turni di tipo int dopo la valutazione, ottenuto: "+str(type(vturni))
 
         '''tutto e' pronto per l'esecuzione'''
 
         #TODO riabilitare quando agenda sara' pronto
-        #agenda.set_penality(vregola, vturni)
+        agenda.set_penality(vregola, vturni)
         
     def __str__(self):
         return " ".join([

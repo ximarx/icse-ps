@@ -23,7 +23,9 @@ def condizioni():
 def congiunzioni():
     return  _congiunzioni.keys()
 
-def factory(nome, args = []):
+def factory(nome, args = None):
+    if args == None:
+        args = []
     merged = copy(_congiunzioni)
     merged.update(_condizioni)
     if not merged.has_key(nome):

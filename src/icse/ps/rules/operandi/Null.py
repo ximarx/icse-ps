@@ -15,7 +15,9 @@ class Null(Operando):
         Constructor
         '''
         
-    def valuta(self, simboli={}):
+    def valuta(self, simboli=None):
+        if simboli == None:
+            simboli = {}
         return None
     
     def __str__(self):

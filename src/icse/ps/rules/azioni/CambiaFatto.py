@@ -38,17 +38,17 @@ class CambiaFatto(Azione):
         '''risolvo il reale valore del fatto se operando (simbolo quasi sicuramente)'''
         vfatto = self._fatto
         if isinstance(vfatto, Operando):
-            vfatto = vfatto.valuta(self, simboli)
+            vfatto = vfatto.valuta(simboli)
         
         '''risolvo il reale valore del attributo se operando'''
         vattributo = self._attributo
         if isinstance(vattributo, Operando):
-            vattributo = vattributo.valuta(self, simboli)
+            vattributo = vattributo.valuta(simboli)
             
         '''risolvo il reale valore del valore se operando'''
         vvalore = self._valore
         if isinstance(vvalore, Operando):
-            vvalore = vvalore.valuta(self, simboli)
+            vvalore = vvalore.valuta(simboli)
             
         '''tutto e' pronto per l'esecuzione'''
         assert isinstance(vfatto, Fact), \

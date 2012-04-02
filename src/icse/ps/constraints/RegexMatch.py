@@ -25,10 +25,13 @@ class RegexMatch(Constraint):
     '''
     Impone una regex match su un valore stringa
     '''
-    def __init__(self, regex, flags = []):
+    def __init__(self, regex, flags = None):
         '''
         Constructor
         '''
+        if flags == None:
+            flags = []
+        
         self._regex = regex
         self._flags = flags
         

@@ -16,7 +16,9 @@ class Stringa(Operando):
         '''
         self._valore = str(valore)
         
-    def valuta(self, simboli={}):
+    def valuta(self, simboli=None):
+        if simboli == None:
+            simboli = {}
         return self._valore
     
     def __str__(self):

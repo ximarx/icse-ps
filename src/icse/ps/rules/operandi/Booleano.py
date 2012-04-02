@@ -18,7 +18,9 @@ class Booleano(Operando):
         valore = (valore == "True" or valore == True)
         self._valore = valore
         
-    def valuta(self, simboli={}):
+    def valuta(self, simboli=None):
+        if simboli == None:
+            simboli = {}
         return self._valore
     
     def __str__(self):

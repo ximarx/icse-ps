@@ -10,10 +10,13 @@ class Fact:
     Rappresentazione generica di un FATTO
     '''
 
-    def __init__(self, symbol, attributes = {}, template = None):
+    def __init__(self, symbol, attributes = None, template = None):
         '''
         Constructor
         '''
+        if attributes == None:
+            attributes = {}
+        
         for key, value in attributes.items() :
             setattr(self, key, value)
             
