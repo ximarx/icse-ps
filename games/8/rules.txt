@@ -133,5 +133,6 @@ defrule mostra-goal-raggiunto:
 	disabilitaRegolaPer('sposta-vuoto-dx', 1)
 	disabilitaRegolaPer('sposta-vuoto-su', 1)
 	disabilitaRegolaPer('sposta-vuoto-giu', 1)
+	disabilitaRegolaPer('mostra-goal-raggiunto', 1)
 :defrule
 
