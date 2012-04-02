@@ -7,7 +7,8 @@ _azioni = {
         'asserisci': '.Asserisci',
         'ritratta': '.Ritratta',
         'cambiaFatto': '.CambiaFatto',
-        'disabilitaRegolaPer': '.DisabilitaRegolaPer'
+        'disabilitaRegolaPer': '.DisabilitaRegolaPer',
+        'mostraMessaggio': '.MostraMessaggio'
     }
 
 def azioni():

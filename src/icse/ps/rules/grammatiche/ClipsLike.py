@@ -1,7 +1,7 @@
 '''
 Created on 31/mar/2012
 
-@author: Francesco\ Capozzo
+@author: Francesco Capozzo
 '''
 from pyparsing import Word, alphanums, alphas, OneOrMore, Forward, nums,\
     Suppress, ZeroOrMore, Group, CharsNotIn, oneOf, Literal

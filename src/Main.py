@@ -46,24 +46,33 @@ if __name__ == '__main__':
     choosed = None
     rules = []
     
+    print "Regole in agenda: "+str(len(agenda._regole))
+    print "Fatti caricati: "+str(len(wmemory.get_facts()))
+    print "Template presenti: "+str(len(wmemory.get_templates()))
+    print
+    
     while cicle:
         
         if choosed != None:
             rule = rules[choosed]
             assert isinstance(rule, Regola)
             print "\t...applico: "+rule.get_nome()
+            agenda.do_decrease_penalities()
             rule.attiva(wmemory, agenda)
-        else:
-            print "Niente choosed?"
         
         wmemory_decorator(wmemory)
+
+        if len(agenda._penality):        
+            print "Le seguenti regole sono disattivate a priori"
+            for (i,t) in agenda._penality.items():
+                print "\t" + str(i) + " per " + str(t) + " turni"
         
         print 
         print "Alla situazione corrente posso applicare:"
         rules = agenda.find_regole(wmemory)
         for i,r in enumerate(rules):
             print "\t"+str(i)+") "+r.get_nome()
-    
+        
         try:
             choosed = int(raw_input('Scegli la regola da applicare: '))
             print "Hai scelto: "+str(choosed)
