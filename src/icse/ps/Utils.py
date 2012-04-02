@@ -20,8 +20,18 @@ def new_object_from_classname(classname, constrParams = [], modulename = None):
         imported = __import__(modulename,  globals(), locals(), [classname], -1)
         attr = getattr(imported, classname)
         #print "creo: "+classname+" con ",constrParams
-        return attr(*constrParams)
+        if isinstance(constrParams, list):
+            return attr(*constrParams)
+        elif isinstance(constrParams, dict):
+            return attr(**constrParams)
+        else:
+            return attr()
     else:
-        return globals()[classname](*constrParams)
+        if isinstance(constrParams, list):
+            return globals()[classname](*constrParams)
+        elif isinstance(constrParams, dict):
+            return globals()[classname](**constrParams)
+        else:
+            return globals()[classname]()
 
     

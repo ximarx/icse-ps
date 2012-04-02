@@ -34,7 +34,7 @@ class Naive:
         tplCella = Template('Cella', {
                 'x' : Range(1, 3),
                 'y' : Range(1, 3),
-                'valore' : OrChain([Range(1,9), NullValue()])
+                'valore' : OrChain([Range(1,8), NullValue()])
             })
         
         wmemory.def_template(tplCella)
@@ -46,7 +46,7 @@ class Naive:
         @param wmemory: WorkingMemory
         '''
         for i in range(0,9):
-            if i > 0: label = i + 1 
+            if i > 0: label = i 
             else: label = None
             wmemory.assert_fact(Fact(str(i+1), {
                     'x': (i / 3) + 1,

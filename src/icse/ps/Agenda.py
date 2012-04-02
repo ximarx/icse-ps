@@ -48,7 +48,7 @@ class Agenda:
         assert isinstance(regola, Regola),\
             "Atteso regola di tipo Regola, fornito: "+str(type(regola))
             
-        self._regole[regola.get_name()] = regola
+        self._regole[regola.get_nome()] = regola
         
     def remove_regola(self, regola):
         assert isinstance(regola, Regola) or isinstance(regola, str),\
