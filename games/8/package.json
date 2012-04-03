@@ -1,0 +1,58 @@
+{
+	"name": "Gioco dell'8",
+	"version": "1",
+	"type": "path-search",
+	"templates" : {
+		"file": "templates.json",
+		"parser": "icse.ps.facts.templates.Parser.Parser"
+	},
+	"initial-facts": {
+		"file": "facts.json",
+		"parser": "icse.ps.facts.Parser.Parser"
+	},
+	"goal": {
+		"file": "goal.txt",
+		"parser": "icse.ps.rules.goal.ClipsLike.ClipsLike"
+	},
+	"rules": {
+		"file": "rules.txt",
+		"parser": "icse.ps.rules.Parser.Parser"
+	},
+	"env": {
+		"problem-type": "search",
+		"strategies": {
+			"blind-depth": {
+				"max-depth" : null,
+				"max-cycles" : null,
+				"loop-guard" : true
+			},
+			"blind-breadth": {
+				"loop-guard" : true,
+			},
+			"best-first": {
+				"loop-guard" : true,
+				"conflict-solver" : "Heuristic.BestFirstSorter"
+			},
+			"best-only": {
+				"loop-guard" : true,
+				"max-cycle" : 100000,
+				"conflict-solver" : "Heuristic.BestOnlyPruner"
+			},
+			"beam-only": {
+				"loop-guard": true,
+				"conflict-solver" : "Heuristic.BeamPruner",
+				"beam-size" : 2
+			},
+			"a-star": {
+				"loop-guard" : true,
+				"conflict-solver" : {
+					"Manhattan Distance": "Heuristic.ManhattanDistanceSorter",
+					"Tasselli fuori posto": "Heuristic.WrongCellsSorter",
+				} 
+			}
+		}
+	},
+	"optimizations": {
+		"status-serializer" : "Optimizations.serializer",
+	}
+}

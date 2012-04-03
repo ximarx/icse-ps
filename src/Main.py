@@ -11,7 +11,6 @@ from icse.ps.rules.Regola import Regola
 from copy import deepcopy
 import random
 import time
-import datetime
 
 
 def wmemory_decorator(wmemory):
@@ -57,11 +56,6 @@ if __name__ == '__main__':
     loader = DirBasedLoader(os.getcwd()+'/../games/8/')
     
     loader.load(wmemory, agenda)
-    
-    # rimuovo regola inutile
-    del agenda._regole['mostra-goal-raggiunto']
-
-
 
     wmemory_decorator(wmemory)
     generati = {
