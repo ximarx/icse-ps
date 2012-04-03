@@ -10,6 +10,8 @@ from icse.ps.wm.loader.DirBasedLoader import DirBasedLoader
 from icse.ps.rules.Regola import Regola
 from copy import deepcopy
 import random
+import time
+import datetime
 
 
 def wmemory_decorator(wmemory):
@@ -67,13 +69,18 @@ if __name__ == '__main__':
         }
     i = 0
     L = [(wmemory, agenda)]
+    
+    start = time.time()
+    
+    print "Inizio: ", time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime())
+    
     while len(L) > 0:
         primo_stato = L[0][0]
         primo_agenda = L[0][1]
         i += 1
         if i == 1000:
             i = 0
-            print "Mille cicli..."
+            print "Mille cicli... in " + str(int(time.time() - start)) + " secondi"
             print "\tDimensione di L: "+str(len(L))
             print "\tDimensione di Generati: "+str(len(generati))
             print "\tSto per analizzare:"
@@ -82,6 +89,7 @@ if __name__ == '__main__':
             
         if is_goal(primo_stato):
             print "Goal raggiunto!!!"
+            print "...ma in " + str(int(time.time() - start)) + " secondi"
             wmemory_decorator(primo_stato)
             break
         else:
