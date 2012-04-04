@@ -10,13 +10,15 @@
 		"file": "facts.json",
 		"parser": "icse.ps.facts.Parser.Parser"
 	},
-	"goal": {
-		"file": "goal.txt",
-		"parser": "icse.ps.rules.goal.ClipsLike.ClipsLike"
+	"goals": {
+		"file": "goals.txt",
+		"parser": "icse.ps.rules.Parser.Parser",
+		"grammar": "icse.ps.rules.goal.ClipsLike.ClipsLike"
 	},
 	"rules": {
 		"file": "rules.txt",
-		"parser": "icse.ps.rules.Parser.Parser"
+		"parser": "icse.ps.rules.Parser.Parser",
+		"grammar": "icse.ps.rules.grammatiche.ClipsLike.ClipsLike"
 	},
 	"env": {
 		"problem-type": "search",
@@ -24,10 +26,12 @@
 			"blind-depth": {
 				"max-depth" : null,
 				"max-cycles" : null,
-				"loop-guard" : true
+				"loop-guard" : true,
+				"conflict-solver" : "random"
 			},
 			"blind-breadth": {
 				"loop-guard" : true,
+				"conflict-solver" : "random"
 			},
 			"best-first": {
 				"loop-guard" : true,

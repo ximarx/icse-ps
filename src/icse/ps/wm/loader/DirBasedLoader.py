@@ -10,6 +10,7 @@ from icse.ps.facts.Parser import Parser as FactParser
 from icse.ps.wm.WorkingMemory import WorkingMemory
 from icse.ps.Agenda import Agenda
 from icse.ps.rules.grammatiche.ClipsLike import ClipsLike
+from icse.ps.rules import goal
 
 
 class DirBasedLoader(object):
@@ -37,7 +38,7 @@ class DirBasedLoader(object):
         self._dirpath = dirpath
             
             
-    def load(self, wmemory, agenda):
+    def load(self, wmemory, agenda, goals):
         
         assert isinstance(wmemory, WorkingMemory)
         assert isinstance(agenda, Agenda)
@@ -54,6 +55,10 @@ class DirBasedLoader(object):
 
         [agenda.set_regola(x) for x in rparser.parse(self._dirpath + "/rules.txt")]
         
+        gparser = RuleParser(goal.ClipsLike())
+        
+        assert isinstance(goals, list)
+        goals.extend(gparser.parse(self._dirpath + "/goals.txt"))
         
         
         

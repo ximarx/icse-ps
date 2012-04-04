@@ -1,4 +1,4 @@
-defgoal:
+defgoal gioco-completato:
 	esiste( $c1, 'Cella',
 		and(
 			uguale( attributo($c1, 'valore'), 1 )
@@ -62,5 +62,6 @@ defgoal:
 			uguale( attributo($cB, 'x'), 2 )
 		)
 	)
+==>
 :defgoal
 

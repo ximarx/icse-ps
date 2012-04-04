@@ -52,10 +52,11 @@ if __name__ == '__main__':
     
     wmemory = DictWMImpl()
     agenda = Agenda()
+    goals = []
     
     loader = DirBasedLoader(os.getcwd()+'/../games/8/')
     
-    loader.load(wmemory, agenda)
+    loader.load(wmemory, agenda, goals)
 
     wmemory_decorator(wmemory)
     generati = {
