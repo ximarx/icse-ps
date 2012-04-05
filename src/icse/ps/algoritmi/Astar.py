@@ -83,7 +83,7 @@ class Astar(Algoritmo):
         # in modo da rendere la A* come una breadth non informata
         heuristic_cost_estimate = self._get_option('h_lambda', (lambda t:0))
         assert callable(heuristic_cost_estimate),\
-            "Funzione h_lambda non valida"
+            "Funzione h_lambda non valida: "+str(type(heuristic_cost_estimate))
             
         dist_between = self._get_option("distance_lambda", (lambda s1,s2,regola:1))
         assert callable(dist_between),\

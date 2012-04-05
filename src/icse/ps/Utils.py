@@ -3,7 +3,6 @@ Created on 27/mar/2012
 
 @author: ximarx
 '''
-import inspect
 import os
 import sys
 

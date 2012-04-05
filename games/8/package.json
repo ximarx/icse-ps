@@ -24,44 +24,24 @@
 		"problem-type": "search",
 		"strategies" : [
 			{
-				"name": "Blind Depth Search",
-				"class": "icse.ps.algoritmi.Depth.Depth",
+				"name": "A* con euristica",
+				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
-					"max-depth": 10000,
-					"loop-guard": true,
-					"conflict-solver": null
+					"h_lambda": "Heuristic.TasselliFuoriPosto",
+					"distance_lambda": null,
+					"h_factor": 1
 				},
-				"note": ""
+				"note": "Taselli fuori posto"
 			},
 			{
-				"name": "Blind Breadth Search",
-				"class": "icse.ps.algoritmi.Breadth.Breadth",
+				"name": "A* con euristica",
+				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
-					"max-nodes": 10000,
-					"loop-guard": true,
-					"conflict-solver": null
+					"h_lambda": "Heuristic.ManhattanDistance",
+					"distance_lambda": null,
+					"h_factor": 1
 				},
-				"note": ""
-			},
-			{
-				"name": "Best First Search",
-				"class": "icse.ps.algoritmi.Depth.Depth",
-				"options": {
-					"max-depth": 10000,
-					"loop-guard": true,
-					"conflict-solver": "Heuristic.BestFirstSorter"
-				},
-				"note": "Implementato tramite Depth, ma con introduzione di euristica tramite ordinamento delle regole"
-			},
-			{
-				"name": "Best Only Search",
-				"class": "icse.ps.algoritmi.Depth.Depth",
-				"options": {
-					"max-depth": 10000,
-					"loop-guard": true,
-					"conflict-solver": "Heuristic.BestOnlyPruner"
-				},
-				"note": "Implementato tramite Depth, ma con euristica per potare tutte le regole non ottimali localmente"
+				"note": "Manhattan Distance"
 			},
 			{
 				"name": "A* senza euristica",
@@ -72,30 +52,10 @@
 					"h_factor": 1
 				},
 				"note": "Corrispondente ad una ricerca tramite Breadth"
-			},
-			{
-				"name": "A* con euristica 'Tasselli fuori posto'",
-				"class": "icse.ps.algoritmi.Astar.Astar",
-				"options": {
-					"h_lambda": "Heuristic.TasselliFuoriPosto",
-					"distance_lambda": null,
-					"h_factor": 1
-				},
-				"note": ""
-			},
-			{
-				"name": "A* con euristica Manhattan Distance",
-				"class": "icse.ps.algoritmi.Astar.Astar",
-				"options": {
-					"h_lambda": "Heuristic.ManhattanDistance",
-					"distance_lambda": null,
-					"h_factor": 1
-				},
-				"note": ""
 			}
 		]
 	},
 	"optimizations": {
-		"status-serializer" : "Optimizations.serializer",
+		"status-serializer" : "Optimizations.serializer"
 	}
 }
