@@ -11,6 +11,8 @@ from icse.ps.rules.Regola import Regola
 from copy import deepcopy
 import random
 import time
+from icse.ps.algoritmi.Astar import Astar
+import sys
 
 
 def wmemory_decorator(wmemory):
@@ -48,7 +50,60 @@ def serialize(wmemory):
             b += str([(lambda t: t or "_")(x['valore']) for x in facts.values() if x['y'] == j and x['x'] == i][0])
     return b
 
-if __name__ == '__main__':
+def manhattan_distance(wmemory):
+    '''
+    Calcola la distanza di ogni casella dalla sua posizione naturale
+    '''
+    posizioni = {
+            1: (1,1),
+            2: (1,2),
+            3: (1,3),
+            4: (2,3),
+            5: (3,3),
+            6: (3,2),
+            7: (3,1),
+            8: (2,1),
+            None: (2,2)
+        }
+
+    sommatoria = 0
+    celle = wmemory.get_facts("Cella")
+    for cella in celle.values():
+        y,x = posizioni[cella['valore']]
+        d = abs( cella['x'] - x) + abs( cella['y'] - y )
+        sommatoria += d
+        
+        
+    return sommatoria
+    
+def tasselli_fuoriposto(wmemory):
+    '''
+    Calcola il numero di tasselli fuoriposto
+    '''
+    
+    posizioni = {
+            1: (1,1),
+            2: (1,2),
+            3: (1,3),
+            4: (2,3),
+            5: (3,3),
+            6: (3,2),
+            7: (3,1),
+            8: (2,1),
+            None: (2,2)
+        }
+    
+    celle = wmemory.get_facts("Cella")
+    errate = 0
+    for cella in celle.values():
+        y,x = posizioni[cella['valore']]
+        if cella['x'] != x or cella['y'] != y:
+            errate += 1
+    
+    return errate
+    
+
+def _gioca():
     
     wmemory = DictWMImpl()
     agenda = Agenda()
@@ -57,17 +112,95 @@ if __name__ == '__main__':
     loader = DirBasedLoader(os.getcwd()+'/../games/8/')
     
     loader.load(wmemory, agenda, goals)
+    
+    cicle = True
+    choosed = None
+    rules = []
+    
+    print "Regole in agenda: "+str(len(agenda._regole))
+    print "Fatti caricati: "+str(len(wmemory.get_facts()))
+    print "Template presenti: "+str(len(wmemory.get_templates()))
+    print
+    
+    while cicle:
+        
+        if choosed != None:
+            rule = rules[choosed]
+            assert isinstance(rule, Regola)
+            print "\t...applico: "+rule.get_nome()
+            agenda.do_decrease_penalities()
+            rule.attiva(wmemory, agenda)
+        
+        wmemory_decorator(wmemory)
+
+        if len(agenda._penality):        
+            print "Le seguenti regole sono disattivate a priori"
+            for (i,t) in agenda._penality.items():
+                print "\t" + str(i) + " per " + str(t) + " turni"
+        
+        print 
+        print "Alla situazione corrente posso applicare:"
+        rules = agenda.find_regole(wmemory)
+        for i,r in enumerate(rules):
+            print "\t"+str(i)+") "+r.get_nome()
+        
+        try:
+            choosed = int(raw_input('Scegli la regola da applicare: '))
+            print "Hai scelto: "+str(choosed)
+        except ValueError:
+            print "...exiting"
+            cicle = False
+        
+    
+
+if __name__ == '__main__':
+    
+    wmemory = DictWMImpl()
+    agenda = Agenda()
+    goals = []
+    
+    loader = DirBasedLoader(os.getcwd()+'/../games/8-harder/')
+    
+    loader.load(wmemory, agenda, goals)
 
     wmemory_decorator(wmemory)
+
+    ablind = Astar(wmemory, agenda)
+    atasselli = Astar(wmemory, agenda)
+    atasselli.set_options({
+            'h_lambda' : tasselli_fuoriposto
+        })
+    amanhattan = Astar(wmemory, agenda)
+    amanhattan.set_options({
+            'h_lambda' : manhattan_distance
+        })
+    amanhattan_f2 = Astar(wmemory, agenda)
+    amanhattan_f2.set_options({
+            'h_lambda' : manhattan_distance,
+            'h_factor' : 2
+        })
+    
+    algs = [("A* tasselli", atasselli), ("A* manhattan", amanhattan), ("A* manhattan (fattore h * 2)", amanhattan_f2), ("A* cieca", ablind)]
+
+    for (name, alg) in algs:     
+        start = time.time()
+        print "Inizio "+name+":\n\t", time.strftime("%d %b %Y %H:%M:%S +0000", time.gmtime())
+        result = alg.execute(goals[0])
+        print "Fine:\n\t", time.strftime("%d %b %Y %H:%M:%S +0000", time.gmtime()) 
+        print "Durata: circa " + str(int(time.time() - start)) + " secondi (+/- 1 secondo)"
+        print result
+        print "-------------------"
+        print
+        
+    
+    '''
+    
     generati = {
             serialize(wmemory) : None
         }
     i = 0
     L = [(wmemory, agenda)]
     
-    start = time.time()
-    
-    print "Inizio: ", time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime())
     
     while len(L) > 0:
         primo_stato = L[0][0]
@@ -110,48 +243,10 @@ if __name__ == '__main__':
                     
             #raw_input('...premi per continuare...')
     
+    '''
 
 
 
-    
-#    cicle = True
-#    choosed = None
-#    rules = []
-#    
-#    print "Regole in agenda: "+str(len(agenda._regole))
-#    print "Fatti caricati: "+str(len(wmemory.get_facts()))
-#    print "Template presenti: "+str(len(wmemory.get_templates()))
-#    print
-#    
-#    while cicle:
-#        
-#        if choosed != None:
-#            rule = rules[choosed]
-#            assert isinstance(rule, Regola)
-#            print "\t...applico: "+rule.get_nome()
-#            agenda.do_decrease_penalities()
-#            rule.attiva(wmemory, agenda)
-#        
-#        wmemory_decorator(wmemory)
-#
-#        if len(agenda._penality):        
-#            print "Le seguenti regole sono disattivate a priori"
-#            for (i,t) in agenda._penality.items():
-#                print "\t" + str(i) + " per " + str(t) + " turni"
-#        
-#        print 
-#        print "Alla situazione corrente posso applicare:"
-#        rules = agenda.find_regole(wmemory)
-#        for i,r in enumerate(rules):
-#            print "\t"+str(i)+") "+r.get_nome()
-#        
-#        try:
-#            choosed = int(raw_input('Scegli la regola da applicare: '))
-#            print "Hai scelto: "+str(choosed)
-#        except ValueError:
-#            print "...exiting"
-#            cicle = False
-    
     
     
     

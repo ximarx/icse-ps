@@ -1,0 +1,67 @@
+defgoal gioco-completato:
+	esiste( $c1, 'Cella',
+		and(
+			uguale( attributo($c1, 'valore'), 1 )
+			uguale( attributo($c1, 'y'), 1 )
+			uguale( attributo($c1, 'x'), 1 )
+		)
+	)
+	esiste( $c2, 'Cella',
+		and(
+			uguale( attributo($c2, 'valore'), 2 )
+			uguale( attributo($c2, 'y'), 1 )
+			uguale( attributo($c2, 'x'), 2 )
+		)
+	)
+	esiste( $c3, 'Cella',
+		and(
+			uguale( attributo($c3, 'valore'), 3 )
+			uguale( attributo($c3, 'y'), 1 )
+			uguale( attributo($c3, 'x'), 3 )
+		)
+	)
+	esiste( $c4, 'Cella',
+		and(
+			uguale( attributo($c4, 'valore'), 4 )
+			uguale( attributo($c4, 'y'), 2 )
+			uguale( attributo($c4, 'x'), 3 )
+		)
+	)
+	esiste( $c5, 'Cella',
+		and(
+			uguale( attributo($c5, 'valore'), 5 )
+			uguale( attributo($c5, 'y'), 3 )
+			uguale( attributo($c5, 'x'), 3 )
+		)
+	)
+	esiste( $c6, 'Cella',
+		and(
+			uguale( attributo($c6, 'valore'), 6 )
+			uguale( attributo($c6, 'y'), 3 )
+			uguale( attributo($c6, 'x'), 2 )
+		)
+	)
+	esiste( $c7, 'Cella',
+		and(
+			uguale( attributo($c7, 'valore'), 7 )
+			uguale( attributo($c7, 'y'), 3 )
+			uguale( attributo($c7, 'x'), 1 )
+		)
+	)
+	esiste( $c8, 'Cella',
+		and(
+			uguale( attributo($c8, 'valore'), 8 )
+			uguale( attributo($c8, 'y'), 2 )
+			uguale( attributo($c8, 'x'), 1 )
+		)
+	)
+	esiste( $cB, 'Cella',
+		and(
+			uguale( attributo($cB, 'valore'), NULL )
+			uguale( attributo($cB, 'y'), 2 )
+			uguale( attributo($cB, 'x'), 2 )
+		)
+	)
+==>
+:defgoal
+

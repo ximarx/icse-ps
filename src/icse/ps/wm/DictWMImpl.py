@@ -93,3 +93,48 @@ class DictWMImpl(WorkingMemory):
         return lfacts
     
     
+if __name__ == '__main__':
+    
+    wm1 = DictWMImpl()
+    wm1.def_template(Template("gen"))
+    
+    wm1.assert_fact(Fact('uno', {'v': 1}, "gen"))
+    wm1.assert_fact(Fact('due', {'v': 2}, "gen"))
+    wm1.assert_fact(Fact('tre', {'v': 3}, "gen"))
+    
+    wm2 = DictWMImpl()
+    wm2.def_template(Template("gen"))
+    
+    wm2.assert_fact(Fact('uno', {'v': 1}, "gen"))
+    wm2.assert_fact(Fact('due', {'v': 2}, "gen"))
+    wm2.assert_fact(Fact('tre', {'v': 3}, "gen"))
+    
+    wm3 = DictWMImpl()
+    wm3.def_template(Template("gen"))
+    
+    wm3.assert_fact(Fact('uno', {'v': 1}, "gen"))
+    wm3.assert_fact(Fact('due', {'v': 2}, "gen"))
+    wm3.assert_fact(Fact('tre', {'v': 3}, "gen"))
+    wm3.assert_fact(Fact('qua', {'v': 4}, "gen"))
+
+    wm4 = DictWMImpl()
+    wm4.def_template(Template("gen"))
+    
+    wm4.assert_fact(Fact('uno', {'v': 1}, "gen"))
+    wm4.assert_fact(Fact('tre', {'v': 3}, "gen"))
+    wm4.assert_fact(Fact('due', {'v': 2}, "gen"))
+
+    wm5 = DictWMImpl()
+    wm5.def_template(Template("gen"))
+    
+    wm5.assert_fact(Fact('uno', {'v': 1}, "gen"))
+    wm5.assert_fact(Fact('tre', {'v': 4}, "gen"))
+    wm5.assert_fact(Fact('due', {'v': 2}, "gen"))
+
+    
+    
+    print "wm1 == wm2 ? (atteso True) ", (wm1 == wm2)
+    print "wm1 == wm3 ? (atteso False) ", (wm1 == wm3)
+    print "wm1 == wm4 ? (atteso True) ", (wm1 == wm4)
+    print "wm1 == wm5 ? (atteso False) ", (wm1 == wm5)
+    

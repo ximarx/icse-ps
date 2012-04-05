@@ -50,7 +50,7 @@ class DisabilitaRegolaPer(Azione):
         '''tutto e' pronto per l'esecuzione'''
 
         #TODO riabilitare quando agenda sara' pronto
-        agenda.set_penality(vregola, vturni)
+        #agenda.set_penality(vregola, vturni)
         
     def __str__(self):
         return " ".join([

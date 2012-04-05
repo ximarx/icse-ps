@@ -10,7 +10,7 @@ import json
 from icse.ps.Constraint import Constraint
 from icse.ps.Fact import Fact
 
-class Template :
+class Template(object) :
     '''
     Una definizione di template di fatto:
     permette di specificare requisiti o limiti

@@ -1,0 +1,73 @@
+[{
+    "attributes": {
+        "y": 2, 
+        "x": 2, 
+        "valore": 1
+    }, 
+    "id": "1", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 2, 
+        "x": 1, 
+        "valore": 2
+    }, 
+    "id": "2", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 1, 
+        "x": 3, 
+        "valore": 3
+    }, 
+    "id": "3", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 3, 
+        "x": 3, 
+        "valore": 4
+    }, 
+    "id": "4", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 3, 
+        "x": 2, 
+        "valore": 5
+    }, 
+    "id": "5", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 2, 
+        "x": 3, 
+        "valore": 6
+    }, 
+    "id": "6", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 3, 
+        "x": 1, 
+        "valore": 7
+    }, 
+    "id": "7", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 1, 
+        "x": 1, 
+        "valore": 8
+    }, 
+    "id": "8", 
+    "template": "Cella"
+},{
+    "attributes": {
+        "y": 1, 
+        "x": 2, 
+        "valore": null
+    }, 
+    "id": "9", 
+    "template": "Cella"
+}]

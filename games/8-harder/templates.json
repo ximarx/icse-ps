@@ -1,0 +1,28 @@
+[{
+    "id": "Cella", 
+    "constraints": {
+        "y": {
+            "maxVal": 3, 
+            "type": "Range", 
+            "minVal": 1
+        }, 
+        "x": {
+            "maxVal": 3, 
+            "type": "Range", 
+            "minVal": 1
+        }, 
+        "valore": {
+            "type": "Or", 
+            "constraints": [
+                {
+                    "maxVal": 8, 
+                    "type": "Range", 
+                    "minVal": 1
+                }, 
+                {
+                    "type": "NullValue"
+                }
+            ]
+        } 
+    }
+}]

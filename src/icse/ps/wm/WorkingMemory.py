@@ -4,7 +4,7 @@ Created on 24/mar/2012
 @author: ximarx
 '''
 
-class WorkingMemory:
+class WorkingMemory(object):
     '''
     Base class per implementazione working memory
     '''
@@ -54,6 +54,33 @@ class WorkingMemory:
         '''
         raise UnimplementedMethodError()
     
+    def __eq__(self, other):
+        if not isinstance(other, WorkingMemory):
+            return NotImplemented
+        
+        assert isinstance(other, WorkingMemory)
+        
+        sfacts = self.get_facts()
+        ofacts = other.get_facts()
+        
+        # primo controllo su quantita di fatti
+        if len(ofacts) != len(sfacts):
+            return False
+    
+        for sfact in sfacts:
+            if ofacts.count(sfact) != 1:
+                return False
+            
+        return True
+    
+    def __ne__(self, other):
+        return not self.__eq__(other, other)
+
+    def __hash__(self):
+        # correggere
+        return 0
+        
+        
 
 class FactNotFoundError(Exception):
     pass

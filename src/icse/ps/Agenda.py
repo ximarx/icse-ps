@@ -8,9 +8,8 @@ from icse.ps.wm.WorkingMemory import WorkingMemory
 
 class Agenda:
     '''
-    classdocs
+    Agenda di regole. Contiene tutte le regole e permette di 
     '''
-
 
     def __init__(self, regole = None):
         '''
