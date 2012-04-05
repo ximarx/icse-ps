@@ -1,0 +1,64 @@
+
+defrule sposta-vuoto-su:
+    esiste( $X, 'Cella', 
+    	uguale( attributo($X, 'valore'), NULL )
+    ) 
+    esiste( $Y, 'Cella', 
+    	and(
+    		uguale( attributo($Y, 'y'), sottrazione( attributo($X, 'y'), 1) )
+    		uguale( attributo($X, 'x'), attributo($Y, 'x') )
+    	) 
+    )
+==>
+    cambiaFatto($X, 'y', sottrazione( attributo($X, 'y'), 1))
+    cambiaFatto($Y, 'y', somma( attributo($Y, 'y'), 1))
+    disabilitaRegolaPer('sposta-vuoto-giu', 1)
+:defrule
+
+defrule sposta-vuoto-giu:
+    esiste( $X, 'Cella', 
+    	uguale( attributo($X, 'valore'), NULL )
+    )
+    esiste( $Y, 'Cella', 
+    	and(
+		    uguale( attributo($Y, 'y'), somma( attributo($X, 'y'), 1) )
+		    uguale( attributo($X, 'x'), attributo($Y, 'x') )
+    	)
+    )
+==>
+    cambiaFatto($X, 'y', somma( attributo($X, 'y'), 1))
+    cambiaFatto($Y, 'y', sottrazione( attributo($Y, 'y'), 1))
+    disabilitaRegolaPer('sposta-vuoto-su', 1)
+:defrule
+
+defrule sposta-vuoto-sx:
+    esiste( $X, 'Cella',
+		uguale( attributo($X, 'valore'), NULL )    
+    )
+    esiste( $Y, 'Cella', 
+    	and(
+		    uguale( attributo($Y, 'x'), sottrazione( attributo($X, 'x'), 1) )
+		    uguale( attributo($X, 'y'), attributo($Y, 'y') )
+    	)
+    )
+==>
+    cambiaFatto($X, 'x', sottrazione( attributo($X, 'x'), 1))
+    cambiaFatto($Y, 'x', somma( attributo($Y, 'x'), 1))
+    disabilitaRegolaPer('sposta-vuoto-dx', 1)
+:defrule
+
+defrule sposta-vuoto-dx:
+    esiste( $X, 'Cella',
+    	uguale( attributo($X, 'valore'), NULL ) 
+    )
+    esiste( $Y, 'Cella',
+    	and(
+		    uguale( attributo($Y, 'x'), somma( attributo($X, 'x'), 1) )
+		    uguale( attributo($X, 'y'), attributo($Y, 'y') )
+    	)
+    )
+==>
+    cambiaFatto($X, 'x', somma( attributo($X, 'x'), 1))
+    cambiaFatto($Y, 'x', sottrazione( attributo($Y, 'x'), 1))
+    disabilitaRegolaPer('sposta-vuoto-sx', 1)
+:defrule

@@ -1,0 +1,41 @@
+Gioco dell'8
+
+{{{ Stato iniziale
+
+ -----------
+ | 2  8  3 |
+ | 1  6  4 | 
+ | 7  #  5 |
+ -----------
+
+}}}
+
+{{{ Stato finale
+
+ -----------
+ | 1  2  3 |
+ | 8  #  4 | 
+ | 7  6  5 |
+ -----------
+ 
+}}}
+
+{{{
+
+Regole:
+
+	sposta-vuoto-giu
+	sposta-vuoto-su
+	sposta-vuoto-dx
+	sposta-vuoto-sx
+	mostra-goal-raggiunto
+
+}}}
+
+{{{
+
+Tipo di obbiettivo:
+	
+	path per la soluzione
+
+}}}
