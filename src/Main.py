@@ -8,11 +8,7 @@ import os
 from icse.ps.Agenda import Agenda
 from icse.ps.wm.loader.DirBasedLoader import DirBasedLoader
 from icse.ps.rules.Regola import Regola
-from copy import deepcopy
-import random
 import time
-from icse.ps.algoritmi.Astar import Astar
-import sys
 from icse.ps.wm.loader.PackageLoader import PackageLoader
 from genericpath import isdir, isfile
 
