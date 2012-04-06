@@ -27,21 +27,21 @@
 				"name": "A* con euristica",
 				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
-					"h_lambda": "Heuristic.TasselliFuoriPosto",
-					"distance_lambda": null,
-					"h_factor": 1
-				},
-				"note": "Taselli fuori posto"
-			},
-			{
-				"name": "A* con euristica",
-				"class": "icse.ps.algoritmi.Astar.Astar",
-				"options": {
 					"h_lambda": "Heuristic.ManhattanDistance",
 					"distance_lambda": null,
 					"h_factor": 1
 				},
 				"note": "Manhattan Distance"
+			},
+			{
+				"name": "A* con euristica",
+				"class": "icse.ps.algoritmi.Astar.Astar",
+				"options": {
+					"h_lambda": "Heuristic.TasselliFuoriPosto",
+					"distance_lambda": null,
+					"h_factor": 1
+				},
+				"note": "Taselli fuori posto"
 			},
 			{
 				"name": "A* senza euristica",
@@ -51,7 +51,7 @@
 					"distance_lambda": null,
 					"h_factor": 1
 				},
-				"note": "Corrispondente ad una ricerca tramite Breadth"
+				"note": "equivalente a Breadth"
 			}
 		]
 	},

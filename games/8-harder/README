@@ -1,4 +1,4 @@
-Gioco dell'8
+Gioco dell'8 (composizione piu' complicata)
 
 {{{ Stato iniziale
 
@@ -13,14 +13,12 @@ Gioco dell'8
 {{{ Stato finale
 
  -----------
- | 1  2  3 |
- | 8  #  4 | 
- | 7  6  5 |
+ | 8  #  3 |
+ | 2  1  6 | 
+ | 7  5  4 |
  -----------
  
 }}}
-
-{{{
 
 Regole:
 
@@ -28,14 +26,8 @@ Regole:
 	sposta-vuoto-su
 	sposta-vuoto-dx
 	sposta-vuoto-sx
-	mostra-goal-raggiunto
-
-}}}
-
-{{{
 
 Tipo di obbiettivo:
 	
 	path per la soluzione
 
-}}}

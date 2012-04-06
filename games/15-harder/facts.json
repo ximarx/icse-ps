@@ -1,47 +1,47 @@
 [{
     "attributes": {
-        "y": 1, 
-        "x": 1, 
+        "y": 3, 
+        "x": 4, 
         "valore": 1
     }, 
     "id": "1", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 1, 
-        "x": 2, 
+        "y": 2, 
+        "x": 3, 
         "valore": 2
     }, 
     "id": "2", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 1, 
-        "x": 3, 
+        "y": 4, 
+        "x": 1, 
         "valore": 3
     }, 
     "id": "3", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 1, 
-        "x": 4, 
+        "y": 2, 
+        "x": 1, 
         "valore": 4
     }, 
     "id": "4", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 2, 
-        "x": 1, 
+        "y": 1, 
+        "x": 3, 
         "valore": 5
     }, 
     "id": "5", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 2, 
-        "x": 3, 
+        "y": 4, 
+        "x": 4, 
         "valore": 6
     }, 
     "id": "6", 
@@ -49,14 +49,14 @@
 },{
     "attributes": {
         "y": 3, 
-        "x": 3, 
+        "x": 2, 
         "valore": 7
     }, 
     "id": "7", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 2, 
+        "y": 1, 
         "x": 4, 
         "valore": 8
     }, 
@@ -65,14 +65,14 @@
 },{
     "attributes": {
         "y": 3, 
-        "x": 1, 
+        "x": 3, 
         "valore": 9
     }, 
     "id": "9", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 3, 
+        "y": 1, 
         "x": 2, 
         "valore": 10
     }, 
@@ -80,7 +80,7 @@
     "template": "Cella"
 },{
     "attributes": {
-        "y": 3, 
+        "y": 2, 
         "x": 4, 
         "valore": 11
     }, 
@@ -88,8 +88,8 @@
     "template": "Cella"
 },{
     "attributes": {
-        "y": 4, 
-        "x": 4, 
+        "y": 1, 
+        "x": 1, 
         "valore": 12
     }, 
     "id": "12", 
@@ -97,15 +97,15 @@
 },{
     "attributes": {
         "y": 4, 
-        "x": 1, 
+        "x": 3, 
         "valore": 13
     }, 
     "id": "13", 
     "template": "Cella"
 },{
     "attributes": {
-        "y": 4, 
-        "x": 2, 
+        "y": 3, 
+        "x": 1, 
         "valore": 14
     }, 
     "id": "14", 
@@ -113,7 +113,7 @@
 },{
     "attributes": {
         "y": 4, 
-        "x": 3, 
+        "x": 2, 
         "valore": 15
     }, 
     "id": "15", 

@@ -33,8 +33,29 @@ def wmemory_decorator(wmemory):
         print
         print "Stato errato, recupero eccezione: "+str(e)
         print "Contenuto WORKING-MEMORY:"
-        print "[" + ",\n".join([str(x) for x in facts.values()]) + "]"
+        if isinstance(facts, dict): 
+            print "[" + ",\n".join([str(x) for x in facts.values()]) + "]"
+        else:
+            print "[" + ",\n".join([str(x) for x in facts]) + "]"
 
+def wmemory_decorator2(wmemory):
+    assert isinstance(wmemory, DictWMImpl)
+    
+    matrix = [["." for _ in range(0,21)] for _ in range(0,21)]
+    
+    goal = wmemory.get_facts("Goal")["Goal"]
+    matrix[int(goal['y']) - 1][int(goal['x']) - 1] = "@"
+    
+    pedone = wmemory.get_facts("Pedone")["Pedone"]
+    matrix[int(pedone['y']) - 1][int(pedone['x']) - 1] = "$"
+    
+    walls = wmemory.get_facts("Muro")
+    for wall in walls.values():
+        matrix[int(wall['y']) - 1][int(wall['x']) - 1] = "#"
+
+    buf = "\n".join(["".join(y) for y in matrix])
+    
+    print buf 
 
 def _gioca():
     
@@ -112,14 +133,17 @@ def main_loop():
         
         try:
             choosed = int(raw_input('Cosa vuoi che risolva? '))
-            print "Hai scelto: "+str(choosed)
+            print "Hai scelto: "+str(games[choosed])
             print
             print "--------------------------------"
-            solve_game(GAMES_DIR+"/"+games[choosed]+"/")
+            try:
+                solve_game(GAMES_DIR+"/"+games[choosed]+"/")
+            except Exception, e:
+                print repr(e)
             print "--------------------------------"
             print
             
-        except ValueError:
+        except ValueError, e:
             print "...Ciao Ciao..."
             return True
     
@@ -134,7 +158,7 @@ def solve_game(gamepath):
     
     loader.load(wmemory, agenda, goals, algs)
 
-    wmemory_decorator(wmemory)
+    wmemory_decorator2(wmemory)
 
     for (name, alg, note) in algs:     
         start = time.time()
@@ -143,6 +167,7 @@ def solve_game(gamepath):
         print "Fine:\n\t", time.strftime("%d %b %Y %H:%M:%S +0000", time.gmtime()) 
         print "Durata: circa " + str(int(time.time() - start)) + " secondi (+/- 1 secondo)"
         print result
+        wmemory_decorator2(result.get_result())
         print "-------------------"
         print
         

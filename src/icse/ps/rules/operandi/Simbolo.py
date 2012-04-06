@@ -23,7 +23,7 @@ class Simbolo(Operando):
         if simboli.has_key(self._identificatore):
             return simboli[self._identificatore]
         else:
-            raise SimboloSconosciutoError("Simbolo non trovato nel dizionario: "+self._identificatore)
+            raise SimboloSconosciutoError("Simbolo non trovato nel dizionario: "+self._identificatore+"\n"+str(simboli))
         
     def __str__(self):
         return self._identificatore

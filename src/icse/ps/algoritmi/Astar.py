@@ -150,8 +150,10 @@ class Astar(Algoritmo):
                     g_scores[copiastato] = tentative_g_score
                     f_scores[copiastato] = tentative_g_score + (h_factor * h_scores[copiastato])
                     
-        
-        return RisultatoAlgoritmo(self._wmemory, None, False)
+        if stato :
+            return RisultatoAlgoritmo(stato, self._reconstuct_path(stato, came_from), False)
+        else :
+            return RisultatoAlgoritmo(self._wmemory, None, False)
         
         
     def _get_max_fscores(self, openset, fscores):

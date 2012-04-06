@@ -1,5 +1,5 @@
 {
-	"name": "Gioco dell'8 (composizione piu' complessa)",
+	"name": "Gioco del 15 (composizione piu' complessa)",
 	"version": "1",
 	"type": "path-search",
 	"templates" : {
@@ -27,16 +27,6 @@
 				"name": "A* con euristica",
 				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
-					"h_lambda": "Heuristic.TasselliFuoriPosto",
-					"distance_lambda": null,
-					"h_factor": 1
-				},
-				"note": "Taselli fuori posto"
-			},
-			{
-				"name": "A* con euristica",
-				"class": "icse.ps.algoritmi.Astar.Astar",
-				"options": {
 					"h_lambda": "Heuristic.ManhattanDistance",
 					"distance_lambda": null,
 					"h_factor": 1
@@ -44,14 +34,24 @@
 				"note": "Manhattan Distance"
 			},
 			{
-				"name": "A* senza euristica",
+				"name": "A* con euristica",
 				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
-					"h_lambda": null,
+					"h_lambda": "Heuristic.ManhattanDistance",
+					"distance_lambda": null,
+					"h_factor": 2
+				},
+				"note": "Manhattan Distance (H factor = 2)"
+			},
+			{
+				"name": "A* con euristica",
+				"class": "icse.ps.algoritmi.Astar.Astar",
+				"options": {
+					"h_lambda": "Heuristic.TasselliFuoriPosto",
 					"distance_lambda": null,
 					"h_factor": 1
 				},
-				"note": "Corrispondente ad una ricerca tramite Breadth"
+				"note": "Taselli fuori posto"
 			}
 		]
 	},

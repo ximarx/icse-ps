@@ -1,0 +1,11 @@
+defgoal gioco-completato:
+	esiste( $P, 'Pedone')
+	esiste( $G, 'Goal',
+		and(
+			uguale( attributo($P, 'y'), attributo($G, 'y') )
+			uguale( attributo($P, 'x'), attributo($G, 'x') )
+		)
+	)
+==>
+:defgoal
+

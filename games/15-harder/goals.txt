@@ -1,0 +1,116 @@
+defgoal gioco-completato:
+	esiste( $c1, 'Cella',
+		and(
+			uguale( attributo($c1, 'valore'), 1 )
+			uguale( attributo($c1, 'y'), 1 )
+			uguale( attributo($c1, 'x'), 1 )
+		)
+	)
+	esiste( $c2, 'Cella',
+		and(
+			uguale( attributo($c2, 'valore'), 2 )
+			uguale( attributo($c2, 'y'), 1 )
+			uguale( attributo($c2, 'x'), 2 )
+		)
+	)
+	esiste( $c3, 'Cella',
+		and(
+			uguale( attributo($c3, 'valore'), 3 )
+			uguale( attributo($c3, 'y'), 1 )
+			uguale( attributo($c3, 'x'), 3 )
+		)
+	)
+	esiste( $c4, 'Cella',
+		and(
+			uguale( attributo($c4, 'valore'), 4 )
+			uguale( attributo($c4, 'y'), 1 )
+			uguale( attributo($c4, 'x'), 4 )
+		)
+	)
+	esiste( $c5, 'Cella',
+		and(
+			uguale( attributo($c5, 'valore'), 5 )
+			uguale( attributo($c5, 'y'), 2 )
+			uguale( attributo($c5, 'x'), 1 )
+		)
+	)
+	esiste( $c6, 'Cella',
+		and(
+			uguale( attributo($c6, 'valore'), 6 )
+			uguale( attributo($c6, 'y'), 2 )
+			uguale( attributo($c6, 'x'), 2 )
+		)
+	)
+	esiste( $c7, 'Cella',
+		and(
+			uguale( attributo($c7, 'valore'), 7 )
+			uguale( attributo($c7, 'y'), 2 )
+			uguale( attributo($c7, 'x'), 3 )
+		)
+	)
+	esiste( $c8, 'Cella',
+		and(
+			uguale( attributo($c8, 'valore'), 8 )
+			uguale( attributo($c8, 'y'), 2 )
+			uguale( attributo($c8, 'x'), 4 )
+		)
+	)
+	esiste( $c9, 'Cella',
+		and(
+			uguale( attributo($c9, 'valore'), 9 )
+			uguale( attributo($c9, 'y'), 3 )
+			uguale( attributo($c9, 'x'), 1 )
+		)
+	)
+	esiste( $c10, 'Cella',
+		and(
+			uguale( attributo($c10, 'valore'), 10 )
+			uguale( attributo($c10, 'y'), 3 )
+			uguale( attributo($c10, 'x'), 2 )
+		)
+	)
+	esiste( $c11, 'Cella',
+		and(
+			uguale( attributo($c11, 'valore'), 11 )
+			uguale( attributo($c11, 'y'), 3 )
+			uguale( attributo($c11, 'x'), 3 )
+		)
+	)
+	esiste( $c12, 'Cella',
+		and(
+			uguale( attributo($c12, 'valore'), 12 )
+			uguale( attributo($c12, 'y'), 3 )
+			uguale( attributo($c12, 'x'), 4 )
+		)
+	)
+	esiste( $c13, 'Cella',
+		and(
+			uguale( attributo($c13, 'valore'), 13 )
+			uguale( attributo($c13, 'y'), 4 )
+			uguale( attributo($c13, 'x'), 1 )
+		)
+	)
+	esiste( $c14, 'Cella',
+		and(
+			uguale( attributo($c14, 'valore'), 14 )
+			uguale( attributo($c14, 'y'), 4 )
+			uguale( attributo($c14, 'x'), 2 )
+		)
+	)
+	esiste( $c15, 'Cella',
+		and(
+			uguale( attributo($c15, 'valore'), 15 )
+			uguale( attributo($c15, 'y'), 4 )
+			uguale( attributo($c15, 'x'), 3 )
+		)
+	)
+	esiste( $cB, 'Cella',
+		and(
+			uguale( attributo($cB, 'valore'), NULL )
+			uguale( attributo($cB, 'y'), 4 )
+			uguale( attributo($cB, 'x'), 4 )
+		)
+	)
+==>
+:defgoal
+

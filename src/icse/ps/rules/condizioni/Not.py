@@ -4,6 +4,7 @@ Created on 30/mar/2012
 @author: Francesco Capozzo
 '''
 from icse.ps.rules.condizioni.Condizione import Condizione
+from icse.ps.rules.condizioni.And import And
 
 class Not(Condizione):
     '''
@@ -15,6 +16,10 @@ class Not(Condizione):
         '''
         Constructor
         '''
+        
+        if isinstance(subcondizione, list):
+            subcondizione = And([x for x in subcondizione if isinstance(x, Condizione)]) 
+        
         if not isinstance(subcondizione, Condizione):
             raise TypeError("Atteso tipo Condizione, passato: " + str(subcondizione.__class__.__name__))
         

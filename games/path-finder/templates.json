@@ -1,0 +1,43 @@
+[{
+    "id": "Pedone", 
+    "constraints": {
+        "y": {
+            "maxVal": 21, 
+            "type": "Range", 
+            "minVal": 1
+        }, 
+        "x": {
+            "maxVal": 21, 
+            "type": "Range", 
+            "minVal": 1
+        }
+    }
+},{
+    "id": "Muro", 
+    "constraints": {
+        "y": {
+            "maxVal": 21, 
+            "type": "Range", 
+            "minVal": 1
+        }, 
+        "x": {
+            "maxVal": 21, 
+            "type": "Range", 
+            "minVal": 1
+        }
+    }
+},{
+    "id": "Goal", 
+    "constraints": {
+        "y": {
+            "maxVal": 21, 
+            "type": "Range", 
+            "minVal": 1
+        }, 
+        "x": {
+            "maxVal": 21, 
+            "type": "Range", 
+            "minVal": 1
+        }
+    }
+}]

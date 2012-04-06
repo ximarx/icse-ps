@@ -52,7 +52,8 @@ class Esiste(Condizione):
             e verifico se quindi la condizione di esistenza
             e' vera (e se per caso ho trovato un solo elemento)
             '''
-            if len(facts) == 1:
+            if len(facts.values()) == 1:
+                simboli[str(self._simbolo)] = facts.values()[0]
                 return True
             else:
                 '''

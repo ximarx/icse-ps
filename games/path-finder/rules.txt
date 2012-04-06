@@ -1,0 +1,144 @@
+
+defrule vai-N:
+    esiste( $P, 'Pedone',
+    	 maggiore( attributo($P, 'y'), 1)
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'y'), sottrazione( attributo($P, 'y'), 1) )
+	    		uguale( attributo($M, 'x'), attributo($P, 'x') )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'y', sottrazione( attributo($P, 'y'), 1))
+:defrule
+
+defrule vai-NW:
+    esiste( $P, 'Pedone',
+    	 and(
+    	 	maggiore( attributo($P, 'y'), 1)
+    	 	minore( attributo($P, 'x'), 21)
+    	 )
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'y'), sottrazione( attributo($P, 'y'), 1) )
+	    		uguale( attributo($M, 'x'), somma(attributo($P, 'x'), 1) )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'y', sottrazione( attributo($P, 'y'), 1))
+    cambiaFatto($P, 'x', somma( attributo($P, 'x'), 1))
+:defrule
+
+defrule vai-NE:
+    esiste( $P, 'Pedone',
+    	 and(
+    	 	maggiore( attributo($P, 'y'), 1)
+    	 	maggiore( attributo($P, 'x'), 1)
+    	 )
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'y'), sottrazione( attributo($P, 'y'), 1) )
+	    		uguale( attributo($M, 'x'), sottrazione( attributo($P, 'x'), 1) )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'y', sottrazione( attributo($P, 'y'), 1))
+    cambiaFatto($P, 'x', sottrazione( attributo($P, 'x'), 1))
+:defrule
+
+defrule vai-S:
+    esiste( $P, 'Pedone',
+    	 minore( attributo($P, 'y'), 21)
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'y'), somma( attributo($P, 'y'), 1) )
+	    		uguale( attributo($M, 'x'), attributo($P, 'x') )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'y', somma( attributo($P, 'y'), 1))
+:defrule
+
+defrule vai-SW:
+    esiste( $P, 'Pedone',
+    	 and( 
+    	 	minore( attributo($P, 'y'), 21)
+    	 	minore( attributo($P, 'x'), 21)
+    	 )
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'y'), somma( attributo($P, 'y'), 1) )
+	    		uguale( attributo($M, 'x'), somma( attributo($P, 'x'), 1) )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'y', somma( attributo($P, 'y'), 1))
+    cambiaFatto($P, 'x', somma( attributo($P, 'x'), 1))
+:defrule
+
+defrule vai-SE:
+    esiste( $P, 'Pedone',
+    	 and( 
+    	 	minore( attributo($P, 'y'), 21)
+    	 	maggiore( attributo($P, 'x'), 1)
+    	 )
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'y'), somma( attributo($P, 'y'), 1) )
+	    		uguale( attributo($M, 'x'), sottrazione( attributo($P, 'x'), 1) )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'y', somma( attributo($P, 'y'), 1))
+    cambiaFatto($P, 'x', sottrazione( attributo($P, 'x'), 1))
+:defrule
+
+defrule vai-W:
+    esiste( $P, 'Pedone',
+    	 minore( attributo($P, 'x'), 21)
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'x'), somma( attributo($P, 'x'), 1) )
+	    		uguale( attributo($M, 'y'), attributo($P, 'y') )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'x', somma( attributo($P, 'x'), 1))
+:defrule
+
+defrule vai-E:
+    esiste( $P, 'Pedone',
+    	 maggiore( attributo($P, 'x'), 1)
+    ) 
+    not(
+    	esiste( $M, 'Muro', 
+	    	and(
+	    		uguale( attributo($M, 'x'), sottrazione( attributo($P, 'x'), 1) )
+	    		uguale( attributo($M, 'y'), attributo($P, 'y') )
+	    	) 
+	    )
+    )
+==>
+    cambiaFatto($P, 'x', sottrazione( attributo($P, 'x'), 1))
+:defrule

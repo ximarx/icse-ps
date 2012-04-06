@@ -17,10 +17,6 @@ Gioco dell'8
  | 8  #  4 | 
  | 7  6  5 |
  -----------
- 
-}}}
-
-{{{
 
 Regole:
 
@@ -28,14 +24,14 @@ Regole:
 	sposta-vuoto-su
 	sposta-vuoto-dx
 	sposta-vuoto-sx
-	mostra-goal-raggiunto
-
-}}}
-
-{{{
 
 Tipo di obbiettivo:
 	
 	path per la soluzione
 
-}}}
+Algoritmi:
+	
+	A* con distanza tasselli
+	A* con manhattan distance
+	A* senza euristica (breadth)
+	

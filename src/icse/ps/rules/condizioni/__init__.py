@@ -8,6 +8,8 @@ __all__ = [ 'condizioni', 'congiunzioni', 'factory', 'CondizioneNonValidaError' 
 _condizioni = {
         'esiste': '.Esiste',
         'uguale': '.Uguale',
+        'maggiore': '.Maggiore',
+        'minore': '.Minore'
     }
 
 _congiunzioni = {

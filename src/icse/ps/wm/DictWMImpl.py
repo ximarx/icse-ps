@@ -21,6 +21,7 @@ class DictWMImpl(WorkingMemory):
         '''
         self.__templates = {}
         self.__facts = {}
+        self._sorted_facts = None
         
         
     def assert_fact(self, fact):
@@ -36,6 +37,7 @@ class DictWMImpl(WorkingMemory):
         
         if template.validate(fact, False) : 
             self.__facts[fact.get_template()][fact.get_id()] = fact
+            self._sorted_facts = None
         else:
             raise TypeError("fact non e' valido per il template")
 
@@ -52,6 +54,7 @@ class DictWMImpl(WorkingMemory):
         
         fact = copy(self.__facts[template][fact])
         del self.__facts[template][fact]
+        self._sorted_facts = None
         return fact
     
     def def_template(self, template):
@@ -91,6 +94,12 @@ class DictWMImpl(WorkingMemory):
             lfacts.extend(facts.values())
             
         return lfacts
+    
+    def __hash__(self):
+        if not self._sorted_facts:
+            self._sorted_facts = self.get_facts()
+            self._sorted_facts.sort(key=lambda t:t.get_id())
+        return hash("".join([str(x) for x in self._sorted_facts]))
     
     
 if __name__ == '__main__':
@@ -137,4 +146,10 @@ if __name__ == '__main__':
     print "wm1 == wm3 ? (atteso False) ", (wm1 == wm3)
     print "wm1 == wm4 ? (atteso True) ", (wm1 == wm4)
     print "wm1 == wm5 ? (atteso False) ", (wm1 == wm5)
+    
+    print str(wm1)
+    print str(wm2)
+    
+    A = {wm1: 'trovato'}
+    print A[wm2]
     

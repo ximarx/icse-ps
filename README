@@ -2,6 +2,7 @@ Production system
 
 esempi giochi inclusi:
 	- gioco dell'8 (/games/8/)
-	- gioco dell'8 [stato iniziale piu complesso] (/games/8-harder/)
+	- gioco dell'8 [stato iniziale piu' complesso] (/games/8-harder/)
 	- gioco del 15 (/games/15/)
+	- gioco del 15 [stato iniziale piu' complesso] (/games/15-harder/)
 
