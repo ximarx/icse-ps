@@ -29,9 +29,9 @@
 				"options": {
 					"h_lambda": "Heuristic.ManhattanDistance",
 					"distance_lambda": null,
-					"h_factor": 1
+					"h_factor": 5
 				},
-				"note": "Manhattan Distance"
+				"note": "Manhattan Distance (H factor = 5)"
 			},
 			{
 				"name": "A* con euristica",
@@ -39,23 +39,14 @@
 				"options": {
 					"h_lambda": "Heuristic.ManhattanDistance",
 					"distance_lambda": null,
-					"h_factor": 2
-				},
-				"note": "Manhattan Distance (H factor = 2)"
-			},
-			{
-				"name": "A* con euristica",
-				"class": "icse.ps.algoritmi.Astar.Astar",
-				"options": {
-					"h_lambda": "Heuristic.TasselliFuoriPosto",
-					"distance_lambda": null,
 					"h_factor": 1
 				},
-				"note": "Taselli fuori posto"
+				"note": "Manhattan Distance"
 			}
 		]
 	},
 	"optimizations": {
-		"status-serializer" : "Optimizations.serializer"
+		"status-serializer" : "Optimizations.serializer",
+		"status-decorator" : "Optimizations.decorator"
 	}
 }

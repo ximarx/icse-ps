@@ -91,19 +91,25 @@ class Astar(Algoritmo):
         
         h_factor = int(self._get_option("h_factor", 1))
         
-        g_scores[self._wmemory] = 0
-        h_scores[self._wmemory] = heuristic_cost_estimate(self._wmemory)
-        f_scores[self._wmemory] = g_scores[self._wmemory] + (h_factor * h_scores[self._wmemory])
+        serializer = self._get_optimization('status-serializer', (lambda t:t))
+        
+        serialized_wm = serializer(self._wmemory) 
+        
+        g_scores[serialized_wm] = 0
+        h_scores[serialized_wm] = heuristic_cost_estimate(self._wmemory)
+        f_scores[serialized_wm] = g_scores[serialized_wm] + (h_factor * h_scores[serialized_wm])
         
         open_set.append(self._wmemory)
         
         while len(open_set) > 0:
             # prendo il nodo in open_set con il minor valore f_scores
-            stato = self._get_max_fscores(open_set, f_scores)
+            stato = self._get_max_fscores(open_set, f_scores, serializer)
+            
+            serialized_stato = serializer(stato)
             
             if self._is_goal(stato):
                 # ho trovato il goal, preparo e restituisco RisultatoAlgoritmo
-                return RisultatoAlgoritmo(stato, self._reconstuct_path(stato, came_from), True)
+                return RisultatoAlgoritmo(stato, self._reconstuct_path(serialized_stato, came_from), True)
             
             open_set.remove(stato)
             closed_set.append(stato)
@@ -126,16 +132,19 @@ class Astar(Algoritmo):
                 
                 rule.attiva(copiastato, self._agenda)
                 
+                serialized_copiastato = serializer(copiastato)
+                
                 if closed_set.count(copiastato) != 0:
                     continue
             
-                tentative_g_score = g_scores[stato] + dist_between(stato, copiastato, rule)
-                if open_set.count(copiastato) == 0 :
+                tentative_g_score = g_scores[serialized_stato] + dist_between(stato, copiastato, rule)
+                #if open_set.count(copiastato) == 0 :
+                if not copiastato in open_set:
                     # prima volta che giungo in questo stato
                     open_set.append(copiastato)
-                    h_scores[copiastato] = heuristic_cost_estimate(copiastato)
+                    h_scores[serialized_copiastato] = heuristic_cost_estimate(copiastato)
                     tentative_is_better = True
-                elif tentative_g_score < g_scores[copiastato]:
+                elif tentative_g_score < g_scores[serialized_copiastato]:
                     # sono gia stato qui, ma questo percorso e' migliore
                     # del precedente
                     
@@ -146,24 +155,24 @@ class Astar(Algoritmo):
                 if tentative_is_better :
                     # devo aggiornare lo stato perche questo stato
                     # e' nuovo o migliore del precedente path
-                    came_from[copiastato] = (stato, rule.get_nome())
-                    g_scores[copiastato] = tentative_g_score
-                    f_scores[copiastato] = tentative_g_score + (h_factor * h_scores[copiastato])
+                    came_from[serialized_copiastato] = (serialized_stato, rule.get_nome())
+                    g_scores[serialized_copiastato] = tentative_g_score
+                    f_scores[serialized_copiastato] = tentative_g_score + (h_factor * h_scores[serialized_copiastato])
                     
         if stato :
-            return RisultatoAlgoritmo(stato, self._reconstuct_path(stato, came_from), False)
+            return RisultatoAlgoritmo(stato, self._reconstuct_path(serializer(stato), came_from), False)
         else :
             return RisultatoAlgoritmo(self._wmemory, None, False)
         
         
-    def _get_max_fscores(self, openset, fscores):
+    def _get_max_fscores(self, openset, fscores, serializer):
         assert isinstance(openset, list)
         assert isinstance(fscores, dict)
         
         current_min = (None, sys.maxint)
         
         for state in openset:
-            score = fscores[state]
+            score = fscores[serializer(state)]
             if score < current_min[1]:
                 current_min = (state, score)
                 

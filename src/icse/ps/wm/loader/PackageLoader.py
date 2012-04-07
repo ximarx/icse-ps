@@ -63,7 +63,7 @@ class PackageLoader(object):
         
     
             
-    def load(self, wmemory, agenda, goals, algs):
+    def load(self, wmemory, agenda, goals, algs, optimizations):
         
         assert isinstance(wmemory, WorkingMemory)
         assert isinstance(agenda, Agenda)
@@ -129,5 +129,15 @@ class PackageLoader(object):
             except Exception, e:
                 print >> sys.stderr, "Errore durante intepretazione di una strategia (verra' ignorata): "+str(e)
         
+        _optimizations = m["optimizations"]
+        if isinstance(_optimizations, dict):
+            for (k,v) in _optimizations.items():
+                if isinstance(v, basestring):
+                    funcname = v[v.rfind('.') + 1:]
+                    modulo = Utils.import_path(self._dirpath.rstrip("/") + "/" + v )
+                    optimizations[k] = getattr(modulo, funcname)
+            
+        for (_,alg,_) in algs:
+            alg.set_optimizations(optimizations)
         
         

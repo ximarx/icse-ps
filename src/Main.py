@@ -11,51 +11,14 @@ from icse.ps.rules.Regola import Regola
 import time
 from icse.ps.wm.loader.PackageLoader import PackageLoader
 from genericpath import isdir, isfile
+import sys
+import traceback
 
 
 def wmemory_decorator(wmemory):
     assert isinstance(wmemory, DictWMImpl)
-    
-    facts = wmemory.get_facts("Cella")
-    
-    i = 1
-    j = 1
-    
-    try:
-        print '---------'
-        for j in range(1,4):
-            b = "| "
-            for i in range(1,4):
-                b += str([(lambda t: t or " ")(x['valore']) for x in facts.values() if x['y'] == j and x['x'] == i][0]) + " "
-            print b + "|"
-        print '---------'
-    except Exception, e:
-        print
-        print "Stato errato, recupero eccezione: "+str(e)
-        print "Contenuto WORKING-MEMORY:"
-        if isinstance(facts, dict): 
-            print "[" + ",\n".join([str(x) for x in facts.values()]) + "]"
-        else:
-            print "[" + ",\n".join([str(x) for x in facts]) + "]"
-
-def wmemory_decorator2(wmemory):
-    assert isinstance(wmemory, DictWMImpl)
-    
-    matrix = [["." for _ in range(0,21)] for _ in range(0,21)]
-    
-    goal = wmemory.get_facts("Goal")["Goal"]
-    matrix[int(goal['y']) - 1][int(goal['x']) - 1] = "@"
-    
-    pedone = wmemory.get_facts("Pedone")["Pedone"]
-    matrix[int(pedone['y']) - 1][int(pedone['x']) - 1] = "$"
-    
-    walls = wmemory.get_facts("Muro")
-    for wall in walls.values():
-        matrix[int(wall['y']) - 1][int(wall['x']) - 1] = "#"
-
-    buf = "\n".join(["".join(y) for y in matrix])
-    
-    print buf 
+    facts = wmemory.get_facts()
+    print "[" + ",\n".join([str(x) for x in facts]) + "]"
 
 def _gioca():
     
@@ -138,12 +101,12 @@ def main_loop():
             print "--------------------------------"
             try:
                 solve_game(GAMES_DIR+"/"+games[choosed]+"/")
-            except Exception, e:
-                print repr(e)
+            except Exception:
+                traceback.print_exc(file=sys.stdout)
             print "--------------------------------"
             print
             
-        except ValueError, e:
+        except ValueError:
             print "...Ciao Ciao..."
             return True
     
@@ -153,12 +116,16 @@ def solve_game(gamepath):
     agenda = Agenda()
     goals = []
     algs = []
+    optimizations = {
+        'status-decorator' : lambda t: wmemory_decorator(t),
+        'status-serializer' : lambda t: t
+    }
     
     loader = PackageLoader(gamepath)
     
-    loader.load(wmemory, agenda, goals, algs)
+    loader.load(wmemory, agenda, goals, algs, optimizations)
 
-    wmemory_decorator2(wmemory)
+    optimizations['status-decorator'](wmemory)
 
     for (name, alg, note) in algs:     
         start = time.time()
@@ -167,7 +134,7 @@ def solve_game(gamepath):
         print "Fine:\n\t", time.strftime("%d %b %Y %H:%M:%S +0000", time.gmtime()) 
         print "Durata: circa " + str(int(time.time() - start)) + " secondi (+/- 1 secondo)"
         print result
-        wmemory_decorator2(result.get_result())
+        optimizations['status-decorator'](result.get_result())
         print "-------------------"
         print
         

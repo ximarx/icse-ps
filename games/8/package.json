@@ -56,6 +56,7 @@
 		]
 	},
 	"optimizations": {
-		"status-serializer" : "Optimizations.serializer"
+		"status-serializer" : "Optimizations.serializer",
+		"status-decorator" : "Optimizations.decorator"
 	}
 }
