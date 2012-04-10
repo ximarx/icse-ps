@@ -31,11 +31,11 @@ def decorator(wmemory):
             if fact['valore'] == None:
                 matrix[int(fact['y'])-1][int(fact['x'])-1] = " #"
             else:
-                matrix[int(fact['y'])-1][int(fact['x'])-1] = str(fact['valore']).ljust(2, " ")
+                matrix[int(fact['y'])-1][int(fact['x'])-1] = str(fact['valore']).rjust(2, " ")
         
-        buf = "---------\n"
+        buf = "---------------\n"
         buf += "| " + " |\n| ".join([" ".join(y) for y in matrix]) + " |\n"
-        buf += "----------\n"
+        buf += "---------------\n"
         
         print buf
         
