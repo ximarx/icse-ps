@@ -33,9 +33,9 @@ def decorator(wmemory):
             else:
                 matrix[int(fact['y'])-1][int(fact['x'])-1] = str(fact['valore']).ljust(2, " ")
         
-        buf = "---------\n"
+        buf = "----------------\n"
         buf += "| " + " |\n| ".join([" ".join(y) for y in matrix]) + " |\n"
-        buf += "----------\n"
+        buf += "-----------------\n"
         
         print buf
         
