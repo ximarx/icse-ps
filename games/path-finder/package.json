@@ -28,7 +28,7 @@
 				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
 					"h_lambda": "Heuristic.ManhattanDistance",
-					"distance_lambda": null,
+					"distance_lambda": "Heuristic.EuclideaDistance",
 					"h_factor": 5
 				},
 				"note": "Manhattan Distance (H factor = 5)"
@@ -38,7 +38,7 @@
 				"class": "icse.ps.algoritmi.Astar.Astar",
 				"options": {
 					"h_lambda": "Heuristic.ManhattanDistance",
-					"distance_lambda": null,
+					"distance_lambda": "Heuristic.EuclideaDistance",
 					"h_factor": 1
 				},
 				"note": "Manhattan Distance"
